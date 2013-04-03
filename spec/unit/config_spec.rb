@@ -7,17 +7,11 @@ describe PtLogger do
     describe "##{string_config_option}" do
       subject { resource.send(string_config_option) }
 
-      context "default value" do
-        it { should be_nil }
+      let(:expected) { 'somthing' }
+      before do
+        resource.send("#{string_config_option}=",expected)
       end
-
-      context "when set" do
-        let(:expected) { 'somthing' }
-        before do
-          resource.send("#{string_config_option}=",expected)
-        end
-        it { should eql(expected) }
-      end
+      it { should eql(expected) }
 
     end
   end

@@ -26,5 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency(%q<rdoc>, ["~> 3.11"])
   gem.add_development_dependency(%q<guard-rspec>, ["~> 1.2.0"])
   gem.add_development_dependency(%q<rb-fsevent>, ["~> 0.9.1"])
+  gem.add_development_dependency(%q<vcr>, ["~> 2.4"])
+  gem.add_development_dependency(%q<webmock>, ["~> 1.9.0"])
 
 end
