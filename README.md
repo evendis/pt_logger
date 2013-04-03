@@ -3,7 +3,7 @@
 PtLogger is a simple way to log messages to Pivotal tracker stories.
 
 The main motivation for this is for situations where you may be facing an as-yet unreproduceable
-bug issue and you want to collection more specific information, possibly even from production environments.
+bug or issue and you want to collect more specific information, possibly even from production environments.
 
 What you might do is add some special instrumentation and logging. But instead of having to go check the
 log files every so often, wouldn't it be nice if the information you are collecting gets automatically added
