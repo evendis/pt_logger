@@ -1,5 +1,4 @@
-require "pt_logger/version"
+require "active_support/core_ext"
 
-module PtLogger
-  # Your code goes here...
-end
+require "pt_logger/version"
+require "pt_logger/config"
