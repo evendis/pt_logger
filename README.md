@@ -52,5 +52,25 @@ and initializer e.g. config/initializers/pt_logger.rb
       config.project_id = 'yyyyy'
     end
 
+The API Key and PT project settings are global in nature. It is explicity assumed that all logging
+within the project should be done with a single API Key and to the same project.
+
 NB: there currently isn't a generator to make a config file for you
+
+## How to log a message with explicit story ID parameter
+
+    message_text = "this is whatever you want to log. It must be a string or support a :to_s method"
+    story_id = "1234"
+    PtLogger.log(message_text,story_id)
+
+## How to log a message with implicit story ID
+
+If the PT story ID is not passed as an explicit parameter to the <tt>log</tt> method,
+PtLogger will attempt to find a story ID in the message text itself.
+The story ID may either be prefixed with "#" or "PT:", for example:
+
+    PtLogger.log("logging a message to PT:123456 (i.e. this will be added to Pivotal Tracker story number 123456)")
+    PtLogger.log("alternatively #78910 (i.e. this will be added to Pivotal Tracker story number 78910)")
+
+
 
