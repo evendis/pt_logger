@@ -1,4 +1,4 @@
-# PtLogger
+# PtLogger [![Build Status](https://secure.travis-ci.org/evendis/pt_logger.png?branch=master)](http://travis-ci.org/evendis/pt_logger)
 
 PtLogger is a simple way to log messages to Pivotal tracker stories.
 
@@ -71,6 +71,3 @@ The story ID may either be prefixed with "#" or "PT:", for example:
 
     PtLogger.log("logging a message to PT:123456 (i.e. this will be added to Pivotal Tracker story number 123456)")
     PtLogger.log("alternatively #78910 (i.e. this will be added to Pivotal Tracker story number 78910)")
-
-
-
