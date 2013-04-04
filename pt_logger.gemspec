@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Paul Gallagher"]
   gem.email         = ["gallagher.paul@gmail.com"]
   gem.description   = %q{Simple way to log messages to Pivotal tracker stories}
-  gem.summary       = %q{Provides a simple interface for logging infomation on a Pivotal Tracker story. Optionally integrates with Rails logger.}
-  gem.homepage      = ""
+  gem.summary       = %q{Provides a simple interface for logging infomation on a Pivotal Tracker story}
+  gem.homepage      = "https://github.com/evendis/pt_logger"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
