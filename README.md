@@ -63,6 +63,9 @@ NB: there currently isn't a generator to make a config file for you
     story_id = "1234"
     PtLogger.log(message_text,story_id)
 
+The <tt>log</tt> method will return true of logging was successful, else returns false.
+It supresses any StandardErrors that may occur during logging.
+
 ## How to log a message with implicit story ID
 
 If the PT story ID is not passed as an explicit parameter to the <tt>log</tt> method,

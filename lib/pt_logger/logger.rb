@@ -33,8 +33,9 @@ class PtLogger::Logger
     if (story_id ||= :infer) == :infer
       story_id = extract_story_id_from(message)
     end
-    return unless story_id
+    return false unless story_id
     send_story_note!("[#{prepend_text}] #{message}",story_id)
+    true
   end
 
   def extract_story_id_from(message)

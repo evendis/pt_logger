@@ -11,7 +11,7 @@ describe PtLogger do
     let(:message) { "a test message for the PT:#{test_story_id} story" }
     subject { resource_class.log(message) }
     it "logs successfully" do
-      should be_a(PivotalTracker::Note)
+      should be_true
     end
   end
 
