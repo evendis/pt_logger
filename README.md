@@ -74,3 +74,27 @@ The story ID may either be prefixed with "#" or "PT:", for example:
 
     PtLogger.log("logging a message to PT:123456 (i.e. this will be added to Pivotal Tracker story number 123456)")
     PtLogger.log("alternatively #78910 (i.e. this will be added to Pivotal Tracker story number 78910)")
+
+## How to conditionally log a message
+
+The <tt>log_if</tt> method can be used to log only if the <tt>condition</tt> is true.
+
+The message to log can be constructed in a block, which is handy because this will only be called
+if the condition is true:
+
+    condition = log_only_if_this == true
+    PtLogger.log_if( condition ) do
+      "evaluate the message to log here with implicit PT:123456 story id"
+    end
+
+The message to log can also be provided as a parameter:
+
+    PtLogger.log_if( condition, "the message to log with implicit PT:123456 story id" )
+
+Explicit story IDs can also be provided separately from the message:
+
+    story_id = 123456
+    PtLogger.log_if( condition, "the message to log", story_id )
+    PtLogger.log_if( condition, story_id ) do
+      "the message to log"
+    end
