@@ -1,15 +1,35 @@
 module PtLogger
 
   # Command: log +message+ to Pivotal Tracker.
+  #
+  # The +message+ to log can the result of block evaluation:
+  #
+  #   log do
+  #     "evaluate the message to log here with implicit PT:999999 story id"
+  #   end
+  #
+  # Or the +message+ to log can be passed as an arguent:
+  #
+  #   log(message)
+  #
+  # An explicit story ID can be provided in both block and args form:
+  #
+  #   log(story_id) do
+  #     "evaluate the message to log here"
+  #   end
+  #
+  #   log(message,story_id)
+  #
   # If +story_id+ is provided, logs to that story, else logs to a story ID
   # referenced in the message itself (as #999 or PT:999).
   #
   # Returns true if log was successful, else false.
   # Supresses any StandardErrors that may occur during logging.
   #
-  def self.log(message,story_id=nil)
+  def self.log(*args)
     if pt = PtLogger::Logger.new
-      pt.append_story_note(message,story_id)
+      message = block_given? ? yield : args.shift
+      pt.append_story_note(message,args.shift)
     else
       false
     end

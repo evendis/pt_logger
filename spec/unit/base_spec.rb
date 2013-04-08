@@ -6,17 +6,56 @@ describe PtLogger do
 
   describe "##log" do
     subject { resource_class.log(message) }
-    context "when story_id is defined in the message" do
+
+    context "with implicit story ID" do
       let(:expected_story_id) { 12345678 }
       let(:message) { "test message for story ##{expected_story_id}" }
       let(:expected_message) { "[PtLogger] #{message}" }
-      context "when successfully logged" do
+
+      context "when message passed as parameter" do
         before do
           logger_class.any_instance.should_receive(:send_story_note!).with(expected_message,expected_story_id).and_return(nil)
         end
         it { should be_true }
       end
+
+      context "when message passed as block" do
+        subject { resource_class.log do
+          message
+        end }
+        before do
+          logger_class.any_instance.should_receive(:send_story_note!).with(expected_message,expected_story_id).and_return(nil)
+        end
+        it { should be_true }
+      end
+
     end
+
+    context "with explicit story ID" do
+      let(:expected_story_id) { 12345678 }
+      let(:message) { "test message" }
+      let(:expected_message) { "[PtLogger] #{message}" }
+
+      context "when message passed as parameter" do
+        subject { resource_class.log(message,expected_story_id) }
+        before do
+          logger_class.any_instance.should_receive(:send_story_note!).with(expected_message,expected_story_id).and_return(nil)
+        end
+        it { should be_true }
+      end
+
+      context "when message passed as block" do
+        subject { resource_class.log(expected_story_id) do
+          message
+        end }
+        before do
+          logger_class.any_instance.should_receive(:send_story_note!).with(expected_message,expected_story_id).and_return(nil)
+        end
+        it { should be_true }
+      end
+
+    end
+
     context "when story_id is not defined" do
       let(:message) { "test message without ID" }
       it { should be_false }
@@ -25,6 +64,7 @@ describe PtLogger do
         subject
       end
     end
+
     context "when some kind of logging error occurs" do
       let(:message) { "test message without ID" }
       before do
@@ -32,6 +72,7 @@ describe PtLogger do
       end
       it { should be_false }
     end
+
   end
 
   describe "#log_if" do
