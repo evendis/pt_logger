@@ -22,6 +22,8 @@ NOTE: real PT credentials are not configured so if the integration tests are mis
 they will fail. Set real PT credentials with environment variables:
 
   export TEST_PTLOGGER_API_KEY=your_api_key
+  export TEST_PTLOGGER_PROJECT_ID=your_project_id
+  export TEST_PTLOGGER_STORY_ID=your_story_id
 
       }
       false
@@ -38,12 +40,12 @@ they will fail. Set real PT credentials with environment variables:
 
   # Returns the project ID to use for tests
   def test_project_id
-    '703897'
+    ENV['TEST_PTLOGGER_PROJECT_ID'] || '703897'
   end
 
   # Returns the story ID to use for tests
   def test_story_id
-    '47387051'
+    ENV['TEST_PTLOGGER_STORY_ID'] || '47387051'
   end
 
 end
